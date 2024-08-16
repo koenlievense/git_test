@@ -11,7 +11,7 @@
       let computerScore = 0;
 
       function getHumanChoice() {
-        let choice = prompt("Make a choice between rock, paper or cissor.");
+        const choice = prompt("Make a choice between rock, paper or scissors.");
 
         switch (choice.toLowerCase()) {
           case "rock":
@@ -22,6 +22,7 @@
             break;
           case "scissors":
             return 2;
+            break;
           default:
             return Math.floor(Math.random() * 3);
         }
@@ -66,7 +67,7 @@
       }
 
       function playGame() {
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
           const humanSelection = getHumanChoice();
           const computerSelection = getComputerChoice();
 

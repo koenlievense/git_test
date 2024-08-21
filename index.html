@@ -5,14 +5,34 @@
     <title>Page Title</title>
   </head>
   <body>
+    <div id="message">Let's settle this like adults.</div>
+    <div>
+      <div>
+        Player Score
+        <div id="playerScore">0</div>
+      </div>
+      <div>
+        Computer Score
+        <div id="computerScore">0</div>
+      </div>
+    </div>
+    <button class="btnChoices">Rock</button>
+    <button class="btnChoices">Paper</button>
+    <button class="btnChoices">Scissors</button>
+    <button id="btnReset">Reset</button>
     <script>
       // Your JavaScript goes here!
       let humanScore = 0;
       let computerScore = 0;
+      let round = 0;
 
-      function getHumanChoice() {
-        const choice = prompt("Make a choice between rock, paper or scissors.");
+      const message = document.querySelector("#message");
+      const playerScoreBoard = document.querySelector("#playerScore");
+      const computerScoreBoard = document.querySelector("#computerScore");
+      const btnChoices = document.querySelectorAll(".btnChoices");
+      const btnReset = document.querySelector("#btnReset");
 
+      function getHumanChoice(choice) {
         switch (choice.toLowerCase()) {
           case "rock":
             return 0;
@@ -38,52 +58,84 @@
         const SCISSORS = 2;
 
         if (humanChoice === computerChoice) {
-          console.log("It's a tie!");
+          message.textContent = "It's a tie!";
         } else if (humanChoice === ROCK) {
           if (computerChoice === PAPER) {
-            console.log("You lose! Paper beats Rock");
+            message.textContent = "You lose! Paper beats Rock";
             computerScore++;
           } else {
-            console.log("You win! Rock beats Scissors");
+            message.textContent = "You win! Rock beats Scissors";
             humanScore++;
           }
         } else if (humanChoice === PAPER) {
           if (computerChoice === SCISSORS) {
-            console.log("You lose! Scissors beats Paper");
+            message.textContent = "You lose! Scissors beats Paper";
             computerScore++;
           } else {
-            console.log("You win! Paper beats Rock");
+            message.textContent = "You win! Paper beats Rock";
             humanScore++;
           }
         } else if (humanChoice === SCISSORS) {
           if (computerChoice === ROCK) {
-            console.log("You lose! Rock beats Scissors");
+            message.textContent = "You lose! Rock beats Scissors";
             computerScore++;
           } else {
-            console.log("You win! Scissors beats Paper");
+            message.textContent = "You win! Scissors beats Paper";
             humanScore++;
           }
         }
+
+        round++;
+        updateScoreBoard(humanScore, computerScore);
+        checkIfWinner();
       }
 
-      function playGame() {
-        for (let i = 0; i < 3; i++) {
-          const humanSelection = getHumanChoice();
-          const computerSelection = getComputerChoice();
+      function checkIfWinner() {
+        if (round === 3) {
+          if (humanScore === computerScore) {
+            message.textContent = "It's a tie!";
+          } else if (humanScore > computerScore) {
+            message.textContent = "You won the game!";
+          } else {
+            message.textContent = "You lose the game!";
+          }
 
-          playRound(humanSelection, computerSelection);
-        }
-
-        if (humanScore === computerScore) {
-          console.log("It's a tie!");
-        } else if (humanScore > computerScore) {
-          console.log("You won the game!");
-        } else {
-          console.log("You lose the game!");
+          toggleBtnChoices(true);
         }
       }
 
-      playGame();
+      function updateScoreBoard(humanScore, computerScore) {
+        playerScoreBoard.textContent = humanScore;
+        computerScoreBoard.textContent = computerScore;
+      }
+
+      function restartGame() {
+        humanScore = 0;
+        computerScore = 0;
+        updateScoreBoard(humanScore, computerScore);
+        round = 0;
+        message.textContent = "Let's settle this like adults";
+      }
+
+      function toggleBtnChoices(value) {
+        for (const btn of btnChoices) {
+          btn.disabled = value;
+        }
+      }
+
+      btnChoices.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+          playRound(
+            getHumanChoice(event.target.textContent),
+            getComputerChoice()
+          );
+        });
+      });
+
+      btnReset.addEventListener("click", () => {
+        restartGame();
+        toggleBtnChoices(false);
+      });
     </script>
   </body>
 </html>

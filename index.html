@@ -15,6 +15,10 @@
         Computer Score
         <div id="computerScore">0</div>
       </div>
+      <div>
+        Round
+        <div id="round">0</div>
+      </div>
     </div>
     <button class="btnChoices">Rock</button>
     <button class="btnChoices">Paper</button>
@@ -29,6 +33,7 @@
       const message = document.querySelector("#message");
       const playerScoreBoard = document.querySelector("#playerScore");
       const computerScoreBoard = document.querySelector("#computerScore");
+      const roundBoard = document.querySelector("#round");
       const btnChoices = document.querySelectorAll(".btnChoices");
       const btnReset = document.querySelector("#btnReset");
 
@@ -86,12 +91,12 @@
         }
 
         round++;
-        updateScoreBoard(humanScore, computerScore);
+        updateScoreBoard(humanScore, computerScore, round);
         checkIfWinner();
       }
 
       function checkIfWinner() {
-        if (round === 3) {
+        if (round === 3 || humanScore === 2 || computerScore === 2) {
           if (humanScore === computerScore) {
             message.textContent = "It's a tie!";
           } else if (humanScore > computerScore) {
@@ -104,16 +109,17 @@
         }
       }
 
-      function updateScoreBoard(humanScore, computerScore) {
+      function updateScoreBoard(humanScore, computerScore, round) {
         playerScoreBoard.textContent = humanScore;
         computerScoreBoard.textContent = computerScore;
+        roundBoard.textContent = round;
       }
 
       function restartGame() {
         humanScore = 0;
         computerScore = 0;
-        updateScoreBoard(humanScore, computerScore);
         round = 0;
+        updateScoreBoard(humanScore, computerScore, round);
         message.textContent = "Let's settle this like adults";
       }
 

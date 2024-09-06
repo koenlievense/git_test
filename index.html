@@ -3,10 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <title>Page Title</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+      }
+
+      .card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 340px;
+      }
+
+      .card div {
+        margin: 10px 0;
+      }
+
+      #message {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .btnChoices {
+        padding: 10px 20px;
+        margin: 5px;
+        width: 100px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .btnChoices:hover {
+        background-color: #45a049;
+      }
+
+      .btnChoices:disabled {
+        cursor: auto;
+        opacity: 0.5;
+      }
+
+      .btnChoices:disabled:hover {
+        background-color: #4caf50;
+      }
+
+      #btnReset {
+        padding: 10px 20px;
+        margin: 10px 0;
+        width: 100px;
+        border: none;
+        border-radius: 5px;
+        background-color: #f44336;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      #btnReset:hover {
+        background-color: #d32f2f;
+      }
+    </style>
   </head>
   <body>
-    <div id="message">Let's settle this like adults.</div>
-    <div>
+    <div class="card">
+      <div id="message">Let's settle this like adults.</div>
       <div>
         Player Score
         <div id="playerScore">0</div>
@@ -19,11 +89,14 @@
         Round
         <div id="round">0</div>
       </div>
+
+      <div>
+        <button class="btnChoices">Rock</button>
+        <button class="btnChoices">Paper</button>
+        <button class="btnChoices">Scissors</button>
+      </div>
+      <button id="btnReset">Reset</button>
     </div>
-    <button class="btnChoices">Rock</button>
-    <button class="btnChoices">Paper</button>
-    <button class="btnChoices">Scissors</button>
-    <button id="btnReset">Reset</button>
     <script>
       // Your JavaScript goes here!
       let humanScore = 0;

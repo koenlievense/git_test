@@ -1,14 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Page Title</title>
+    <title>Etch-a-Sketch</title>
   </head>
   <body>
-    <div class="container"></div>
+    <header>
+      <h1>Etch-a-Sketch</h1>
+    </header>
+
+    <main>
+      <div class="actions">
+        <button class="resetGrid">Reset Grid</button>
+        <input
+          type="range"
+          min="16"
+          max="100"
+          value="16"
+          class="slider"
+          id="gridSize"
+        />
+        <label for="gridSize">Grid Size: <span id="gridValue">16</span></label>
+      </div>
+      <div class="container"></div>
+    </main>
     <script>
-      // Your JavaScript goes here!
+      const squareCont = document.querySelector(".container");
+      const resetButton = document.querySelector(".resetGrid");
+      const slider = document.querySelector("#gridSize");
+      const gridValue = document.querySelector("#gridValue");
+
+      const makeGrid = (size) => {
+        squareCont.innerHTML = "";
+        squareCont.style.width = "640px";
+        squareCont.style.height = "640px";
+        const newSquare = document.createDocumentFragment();
+
+        for (let i = 0; i < size * size; i++) {
+          const square = document.createElement("div");
+          square.classList.add("square");
+          square.style.flex = `0 0 calc(100% / ${size})`;
+          square.style.height = `calc(100% / ${size})`;
+          newSquare.appendChild(square);
+        }
+
+        squareCont.appendChild(newSquare);
+
+        document.querySelectorAll(".square").forEach((square) => {
+          square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = randomColor();
+          });
+        });
+      };
+
+      const randomColor = () => {
+        let letters = "0123456789ABCDEF";
+        let color = "#";
+
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+
+        return color;
+      };
+
+      resetButton.addEventListener("click", () => {
+        const size = parseInt(prompt("Enter new grid size between 16 and 100"));
+
+        if (size >= 16 && size <= 100) {
+          makeGrid(size);
+          slider.value = size;
+          gridValue.textContent = size;
+        }
+      });
+
+      slider.addEventListener("input", (e) => {
+        const size = e.target.value;
+        gridValue.textContent = size;
+        makeGrid(size);
+      });
+
+      makeGrid(16);
     </script>
   </body>
 </html>

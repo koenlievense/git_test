@@ -2,88 +2,27 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Page Title</title>
+    <link rel="stylesheet" href="style.css" />
+    <title>Calculator</title>
   </head>
   <body>
     <script>
       // Your JavaScript goes here!
-      let humanScore = 0;
-      let computerScore = 0;
-
-      function getHumanChoice() {
-        const choice = prompt("Make a choice between rock, paper or scissors.");
-
-        switch (choice.toLowerCase()) {
-          case "rock":
-            return 0;
-            break;
-          case "paper":
-            return 1;
-            break;
-          case "scissors":
-            return 2;
-            break;
-          default:
-            return Math.floor(Math.random() * 3);
-        }
+      function add(num1, num2) {
+        return num1 + num2;
       }
 
-      function getComputerChoice() {
-        return Math.floor(Math.random() * 3);
+      function subtract(num1, num2) {
+        return num1 - num2;
       }
 
-      function playRound(humanChoice, computerChoice) {
-        const ROCK = 0;
-        const PAPER = 1;
-        const SCISSORS = 2;
-
-        if (humanChoice === computerChoice) {
-          console.log("It's a tie!");
-        } else if (humanChoice === ROCK) {
-          if (computerChoice === PAPER) {
-            console.log("You lose! Paper beats Rock");
-            computerScore++;
-          } else {
-            console.log("You win! Rock beats Scissors");
-            humanScore++;
-          }
-        } else if (humanChoice === PAPER) {
-          if (computerChoice === SCISSORS) {
-            console.log("You lose! Scissors beats Paper");
-            computerScore++;
-          } else {
-            console.log("You win! Paper beats Rock");
-            humanScore++;
-          }
-        } else if (humanChoice === SCISSORS) {
-          if (computerChoice === ROCK) {
-            console.log("You lose! Rock beats Scissors");
-            computerScore++;
-          } else {
-            console.log("You win! Scissors beats Paper");
-            humanScore++;
-          }
-        }
+      function multiply(num1, num2) {
+        return num1 * num2;
       }
 
-      function playGame() {
-        for (let i = 0; i < 3; i++) {
-          const humanSelection = getHumanChoice();
-          const computerSelection = getComputerChoice();
-
-          playRound(humanSelection, computerSelection);
-        }
-
-        if (humanScore === computerScore) {
-          console.log("It's a tie!");
-        } else if (humanScore > computerScore) {
-          console.log("You won the game!");
-        } else {
-          console.log("You lose the game!");
-        }
+      function divide(num1, num2) {
+        return (num1 / num2).toFixed(1);
       }
-
-      playGame();
     </script>
   </body>
 </html>

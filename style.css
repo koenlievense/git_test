@@ -1,0 +1,125 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.calc-container {
+  display: flex;
+  flex-direction: column;
+  border: 2.5px solid black;
+  border-radius: 10px;
+  width: 370px;
+  height: 525px;
+  background-color: rgb(14, 27, 77);
+}
+
+.display-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.display-small-text-container {
+  flex: 1;
+  padding: 10px 10px 7px 10px;
+  text-align: right;
+  background-color: rgb(227, 227, 227);
+  border-top: 3px solid black;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  margin-bottom: -1px;
+}
+
+.display-text-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 7px 10px 10px 10px;
+  background-color: rgb(227, 227, 227);
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  margin-top: -1px;
+}
+
+.display-text {
+  font-size: 32px;
+  overflow: hidden;
+  max-width: 315.2px;
+}
+
+.button-container {
+  flex: 4;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: Arial, Verdana, sans-serif;
+}
+
+.line {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  width: 82px;
+  height: auto;
+  font-size: 24px;
+  border-radius: 18px;
+}
+
+.backspace-button,
+.percent-button,
+.plus-minus-button,
+.equals-button {
+  color: aliceblue;
+}
+
+.backspace-button {
+  background-color: rgb(221, 48, 48);
+}
+
+.percent-button,
+.plus-minus-button {
+  background-color: rgb(234, 184, 58);
+}
+
+.ac-button,
+.operator-button,
+.decimal-button {
+  color: rgb(51, 51, 51);
+}
+
+.ac-button {
+  background-color: white;
+}
+
+.operator-button,
+.decimal-button {
+  background-color: rgb(185, 227, 227);
+}
+
+.number-button {
+  background-color: rgb(222, 214, 214);
+}
+
+.equals-button {
+  background-color: rgb(22, 150, 22);
+}
